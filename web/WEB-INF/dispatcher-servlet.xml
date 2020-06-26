@@ -23,16 +23,28 @@
   <mvc:resources mapping="/resources/**" location="/resources/" />
   <mvc:annotation-driven/>  -->
   
-
+<!-- Method 1 – prop key 
   <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
     <property name="mappings">
       <props>
         <prop key="/*">DefaultController</prop>
+        <prop key="/home">HomeController</prop>
       </props>
+    </property>
+  </bean>-->
+
+  <!-- Method 2 – value -->
+  <bean id="urlMapping" class="org.springframework.web.servlet.handler.SimpleUrlHandlerMapping">
+    <property name="mappings">
+      <value>
+        /=DefaultController
+        /home=HomeController
+      </value>
     </property>
   </bean>
   
   <bean id="DefaultController" class="controller.DefaultController" />
+  <bean id="HomeController" class="controller.HomeController" />
  
   <bean id="viewResolver"
         class="org.springframework.web.servlet.view.InternalResourceViewResolver"
